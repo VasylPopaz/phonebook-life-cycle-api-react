@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { Form, FormInput, FormLabel } from './Phonebook.styled';
 import { Button } from 'components/Button.styled';
+
 export class Phonebook extends Component {
   state = {
     name: '',
@@ -15,7 +16,7 @@ export class Phonebook extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit({ ...this.state, id: nanoid() });
+    this.props.onSubmit({ id: nanoid(), ...this.state });
     this.setState({ name: '', number: '' });
   };
 

@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import { Contacts, Filter, Section, Phonebook } from 'components';
 import { SectionContainer } from './Section/Section.styled';
+import { loadFromLS, saveToLS } from 'helpers/storage';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '432-23-34' },
-      { id: 'id-2', name: 'Hermione Kline', number: '435-75-76' },
-      { id: 'id-3', name: 'Eden Clements', number: '866-11-64' },
-      { id: 'id-4', name: 'Annie Copeland', number: '342-87-35' },
-    ],
+    contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const contacts = loadFromLS('contacts');
+    if (contacts) {
+      this.setState({ contacts: contacts });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      saveToLS('contacts', this.state.contacts);
+    }
+  }
 
   formSubmitHandler = data => {
     const { contacts } = this.state;

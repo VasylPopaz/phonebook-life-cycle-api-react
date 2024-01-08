@@ -6,7 +6,7 @@ import { ContactsDescr, ContactsItem, ContactsList } from './Contacts.styled';
 export const Contacts = ({ contacts, onClick }) => {
   return (
     <ContactsList>
-      {contacts.map((elem, index) => {
+      {contacts.map(elem => {
         return (
           <ContactsItem key={nanoid()}>
             <ContactsDescr>
