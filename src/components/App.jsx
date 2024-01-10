@@ -12,7 +12,7 @@ export class App extends Component {
   componentDidMount() {
     const contacts = loadFromLS('contacts');
     if (contacts) {
-      this.setState({ contacts: contacts });
+      this.setState({ contacts });
     }
   }
 
